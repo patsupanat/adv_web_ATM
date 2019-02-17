@@ -2,8 +2,9 @@
   <div class="home">
     ATM Login<br>
     Username : <input type="text" v-model="loginUser.username"><br>
-    Password : <input type="password" v-model="loginUser.password"><br>
-    <input type="submit" @click="login()">
+    Password : <input type="password" v-model="loginUser.password"><br><br>
+    <button type="submit" @click="login()">login</button>
+    <button type="submit" @click="createuser()">register</button>
 
 
   </div>
@@ -34,7 +35,10 @@ export default {
     },
     ...mapActions({
       setUserLogin:'setUserLogin'
-    })
+    }),
+    createuser(){
+       this.$router.push({name:'createuser'})
+    }
   },
   computed:{
     ...mapState({
