@@ -1,8 +1,9 @@
 <template>
     <div>
         Username : <input type="text" placeholder="username" v-model="Createuser.username"><br>
-        Password : <input type="text" placeholder="password" v-model="Createuser.password"><br>  
-        Balance :  <input type="text" placeholder="balance" v-model="Createuser.balance"><br><br>
+        Password : <input type="text" placeholder="password" v-model="Createuser.password"><br>
+        Re-Password : <input type="text" placeholder="re-password" v-model="Createuser.repassword"><br>    
+        Balance :  <input type="number" placeholder="balance" v-model="Createuser.balance"><br><br>
         <button type="submit" @click="addUser()">submit</button>      
 
     </div>    
@@ -17,6 +18,7 @@ export default {
             Createuser:{
                 username:'',
                 password:'',
+                repassword:'',
                 balance:''
             }
         }
@@ -26,12 +28,16 @@ export default {
         createuser: 'createuser'
         }),
         addUser(){
-            this.createuser({
-                username : this.Createuser.username,
-                password : this.Createuser.password,
-                balance : parseInt(this.Createuser.balance)
-            })
-            this.$router.push({name:'home'})
+            if(this.Createuser.password === this.Createuser.repassword){
+                this.createuser({
+                    username : this.Createuser.username,
+                    password : this.Createuser.password,
+                    balance : parseInt(this.Createuser.balance)
+                })
+                this.$router.push({name:'home'})
+            }else{
+                alert('Password ไม่ตรงกัน!!')
+            }
         }
     }
 }
